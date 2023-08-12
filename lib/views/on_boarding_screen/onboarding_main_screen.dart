@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fyp_project/providers/on_boarding_provider.dart';
 import 'package:fyp_project/views/home_page/home_screen.dart';
 import 'package:provider/provider.dart';
-
 import '../../utils/media_query.dart';
 import '../../widgets/custom_text.dart';
 import 'custom_on_boarding_view/custom_on_boardibg_view.dart';
@@ -66,17 +65,6 @@ class _OnBoardingMainScreenState extends State<OnBoardingMainScreen> {
                         if (index == 2) {
                           showTopContainer = true;
                         }
-                        // if (index == 1) {
-                        //   showBlueText = true;
-                        // } else {
-                        //   showBlueText = false;
-                        // }
-                        // if (index == 0) {
-                        //   showWhiteText = true;
-                        // } else {
-                        //   showWhiteText = false;
-                        // }
-
                         return CustomOnBoaringViewWidget(
                           showTopContainer: showTopContainer,
                           showWhiteText: showWhiteText,

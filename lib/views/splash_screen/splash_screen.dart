@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-
 import '../../utils/app_assets.dart';
 import '../on_boarding_screen/onboarding_main_screen.dart';
 
