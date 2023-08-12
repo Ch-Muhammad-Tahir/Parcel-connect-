@@ -8,6 +8,7 @@ class AppAssets {
   static String shape3 = "assets/onboarding_icons/Shape 3.png";
   static String trackIcon = "assets/onboarding_icons/Track Order.png";
   static String getOrderIcon = "assets/onboarding_icons/Get your order.png";
+  static String loginScreenIcon = "assets/images/login_scrren_icon.png";
 
   //--------------------- Muhammaf Moazam Ali-----------------------------------
 }
