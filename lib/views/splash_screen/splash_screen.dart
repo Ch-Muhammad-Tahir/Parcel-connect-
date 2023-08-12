@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:fyp_project/views/home_page/home_screen.dart';
 
 import '../../utils/app_assets.dart';
 import '../on_boarding_screen/onboarding_main_screen.dart';
