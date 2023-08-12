@@ -5,8 +5,9 @@ class HomePageScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWith = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      appBar: AppBar(title: const Text("Home Page")),
+      appBar: AppBar(title: Text("With of Screen is $screenWith")),
       body: const Column(children: [Text("Hello")]),
     );
   }
