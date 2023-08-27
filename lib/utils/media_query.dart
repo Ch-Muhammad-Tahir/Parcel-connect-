@@ -35,7 +35,7 @@ class GetScreenSize {
     if (MediaQuery.sizeOf(context).width > 1200) {
       return MediaQuery.sizeOf(context).width / 3;
     }
-    if (MediaQuery.sizeOf(context).width > 600 &&
+    if (MediaQuery.sizeOf(context).width > 500 &&
         MediaQuery.sizeOf(context).width <= 1200) {
       return MediaQuery.sizeOf(context).width / 2;
     }

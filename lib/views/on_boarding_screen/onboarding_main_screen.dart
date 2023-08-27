@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_project/providers/on_boarding_provider.dart';
 import 'package:fyp_project/views/home_page/home_screen.dart';
+import 'package:fyp_project/views/login_screen/login_screen.dart';
 import 'package:provider/provider.dart';
 import '../../utils/media_query.dart';
 import '../../widgets/custom_text.dart';
@@ -41,7 +42,7 @@ class _OnBoardingMainScreenState extends State<OnBoardingMainScreen> {
             SizedBox(
               width: double.infinity,
               height: GetScreenSize.getScreenWidth(context) * 1.8,
-              child: Consumer<OnBoardingProvier>(
+              child: Consumer<OnBoardingProvider>(
                 builder: (context, provider, child) {
                   return PageView.builder(
                       scrollDirection: Axis.horizontal,
@@ -88,8 +89,7 @@ class _OnBoardingMainScreenState extends State<OnBoardingMainScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const HomePageScreenWidget()),
+                              builder: (context) => LoginScreenWidget()),
                         );
                       },
                       child: CustomText(
