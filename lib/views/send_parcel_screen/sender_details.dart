@@ -169,8 +169,8 @@ class SenderDetailsScreenWidget extends StatelessWidget {
           ),
           SfDateRangePicker(
             onSelectionChanged: (dateRangePickerSelectionChangedArgs) {
-              date = dateRangePickerSelectionChangedArgs.value.toString();
-
+              DateTime selectedDate = dateRangePickerSelectionChangedArgs.value;
+              date = selectedDate.toLocal().toIso8601String().split('T')[0];
               print(date);
             },
 
@@ -211,13 +211,9 @@ class SenderDetailsScreenWidget extends StatelessWidget {
                 String phone = phoneNumberController.text.trim();
                 String address = addressController.text.trim();
                 String message = messageController.text.trim();
-                // Provider.of<SendParcelProvider>(context, listen: false)
-                //     .addSenderDetails(name, phone, address, sender_city, date,
-                //         message, context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ReceiverDetailsScreenWidget()));
+                Provider.of<SendParcelProvider>(context, listen: false)
+                    .addSenderDetails(name, phone, address, sender_city, date,
+                        message, context);
               },
               buttonText: "Next",
               buttonColor: Colors.blue,

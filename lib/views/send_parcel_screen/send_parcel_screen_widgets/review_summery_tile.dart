@@ -5,7 +5,15 @@ import 'package:fyp_project/widgets/my_custom_text.dart';
 
 class ReviewSummeryTileView extends StatelessWidget {
   final bool isSender;
-  const ReviewSummeryTileView({super.key, required this.isSender});
+  final String name;
+  final String number;
+  final String address;
+  const ReviewSummeryTileView(
+      {super.key,
+      required this.isSender,
+      required this.name,
+      required this.number,
+      required this.address});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,7 @@ class ReviewSummeryTileView extends StatelessWidget {
                   textColor: Colors.grey,
                 ),
                 MyCustomText(
-                  text: "Dummy person",
+                  text: name,
                   fontSize: screenSize * 0.04,
                   fontWeight: FontWeight.w600,
                 ),
@@ -46,7 +54,7 @@ class ReviewSummeryTileView extends StatelessWidget {
                   textColor: Colors.grey,
                 ),
                 MyCustomText(
-                  text: "+92 306 8192904",
+                  text: number,
                   fontSize: screenSize * 0.04,
                   fontWeight: FontWeight.w600,
                 ),
@@ -65,7 +73,7 @@ class ReviewSummeryTileView extends StatelessWidget {
                   textColor: Colors.grey,
                 ),
                 MyCustomText(
-                  text: "XYZ C- Block -Johar Town Lahore,",
+                  text: address,
                   fontSize: screenSize * 0.04,
                   fontWeight: FontWeight.w600,
                 ),

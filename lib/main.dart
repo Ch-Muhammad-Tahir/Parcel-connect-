@@ -3,6 +3,7 @@ import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:fyp_project/providers/on_boarding_provider.dart';
 import 'package:fyp_project/providers/send_parcel_provide.dart';
+import 'package:fyp_project/views/home_page/nav_bar_screens.dart';
 
 import 'package:fyp_project/views/splash_screen/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -17,11 +18,13 @@ void main(List<String> args) {
             create: (context) => SendParcelProvider()),
       ],
       child: const MaterialApp(
-        home: SplashScreen(),
+        home: BottomNavBarScreenWidgets(),
       ),
     ),
   );
 }
+
+
 
 
 // void main(List<String> args) {

@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:fyp_project/utils/media_query.dart';
 import 'package:fyp_project/views/send_parcel_screen/send_parcel_screen_widgets/review_summery_tile.dart';
 import 'package:fyp_project/widgets/custom_sized_box.dart';
+import 'package:fyp_project/widgets/custom_text_field.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/send_parcel_provide.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/my_custom_text.dart';
 
 class CheckOutParcelScreenWidget extends StatelessWidget {
-  const CheckOutParcelScreenWidget({super.key});
+  final TextEditingController costController = TextEditingController();
+  CheckOutParcelScreenWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,9 @@ class CheckOutParcelScreenWidget extends StatelessWidget {
                         textColor: Colors.grey,
                       ),
                       MyCustomText(
-                        text: "XYZ",
+                        text: Provider.of<SendParcelProvider>(context,
+                                listen: true)
+                            .itemName!,
                         fontSize: screenSize * 0.04,
                         fontWeight: FontWeight.w600,
                       ),
@@ -69,7 +75,8 @@ class CheckOutParcelScreenWidget extends StatelessWidget {
                         textColor: Colors.grey,
                       ),
                       MyCustomText(
-                        text: r"$100",
+                        text: Provider.of<SendParcelProvider>(context)
+                            .parcelValue!,
                         fontSize: screenSize * 0.04,
                         fontWeight: FontWeight.w600,
                       ),
@@ -88,7 +95,8 @@ class CheckOutParcelScreenWidget extends StatelessWidget {
                         textColor: Colors.grey,
                       ),
                       MyCustomText(
-                        text: "Small",
+                        text: Provider.of<SendParcelProvider>(context)
+                            .parcelSize!,
                         fontSize: screenSize * 0.04,
                         fontWeight: FontWeight.w600,
                       ),
@@ -107,7 +115,8 @@ class CheckOutParcelScreenWidget extends StatelessWidget {
                         textColor: Colors.grey,
                       ),
                       MyCustomText(
-                        text: "Documents Type",
+                        text: Provider.of<SendParcelProvider>(context)
+                            .parcelCategory!,
                         fontSize: screenSize * 0.04,
                         fontWeight: FontWeight.w600,
                       ),
@@ -121,17 +130,51 @@ class CheckOutParcelScreenWidget extends StatelessWidget {
           CustomSizedBox(
             height: screenSize * 0.04,
           ),
-          const ReviewSummeryTileView(isSender: true),
+          ReviewSummeryTileView(
+            isSender: true,
+            name: Provider.of<SendParcelProvider>(context, listen: true)
+                .sender!
+                .senderName,
+            address: Provider.of<SendParcelProvider>(context, listen: true)
+                .sender!
+                .senderAddress,
+            number: Provider.of<SendParcelProvider>(context, listen: true)
+                .sender!
+                .senderNumber,
+          ),
           CustomSizedBox(
             height: screenSize * 0.04,
           ),
-          const ReviewSummeryTileView(isSender: false),
+          ReviewSummeryTileView(
+            isSender: false,
+            address: Provider.of<SendParcelProvider>(context, listen: true)
+                .receiver!
+                .receiverAddress,
+            name: Provider.of<SendParcelProvider>(context, listen: true)
+                .receiver!
+                .receiverName,
+            number: Provider.of<SendParcelProvider>(context, listen: true)
+                .receiver!
+                .receiverNumber,
+          ),
           CustomSizedBox(
             height: screenSize * 0.07,
           ),
+          CustomTextField(
+              keyboardType: TextInputType.number,
+              controller: costController,
+              labelText: "Cost",
+              hintText: "Enter Cost For Delivery"),
+          CustomSizedBox(
+            height: screenSize * 0.1,
+          ),
           CustomTextButton(
               padding: const EdgeInsets.symmetric(vertical: 13),
-              onTab: () {},
+              onTab: () {
+                String cost = costController.text.trim();
+                Provider.of<SendParcelProvider>(context, listen: false)
+                    .getCost(cost, context);
+              },
               buttonText: "Post Brief",
               buttonColor: Colors.blue,
               radius: 15,
