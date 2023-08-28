@@ -18,7 +18,7 @@ void main(List<String> args) {
             create: (context) => SendParcelProvider()),
       ],
       child: const MaterialApp(
-        home: BottomNavBarScreenWidgets(),
+        home: SplashScreen(),
       ),
     ),
   );
