@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fyp_project/utils/media_query.dart';
 import 'package:fyp_project/widgets/my_custom_text.dart';
 
-import '../../../models/parcel_model.dart';
+import '../../../models/parcel_size_model.dart';
 
 class MyParcelSize extends StatelessWidget {
   final VoidCallback onTab;
-  final Parcel parcel;
+  final ParcelSize parcel;
   const MyParcelSize({
     Key? key,
     required this.parcel,

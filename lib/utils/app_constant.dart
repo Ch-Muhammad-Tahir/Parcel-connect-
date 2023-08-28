@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fyp_project/models/parcel_model.dart';
+import 'package:fyp_project/models/parcel_size_model.dart';
 import 'package:fyp_project/utils/app_assets.dart';
 import 'package:line_icons/line_icon.dart';
 
@@ -34,26 +34,26 @@ class AppConstants {
     "Receive Packages or Gifts From Your Favorites  "
   ];
   static List<Color> homePageItemColor = [Colors.blue, Colors.black];
-  static List<Parcel> parcelSize = [
-    Parcel(
+  static List<ParcelSize> parcelSize = [
+    ParcelSize(
       parcelSize: 'Small',
       parcelSizeDimension: 'Max. 25 kg, 8 x 38 x 64 cm',
       parcelSizeDescription: 'Fits in an envelope',
       parcelSizeImage: 'assets/images/img_parcel_size_small.png',
     ),
-    Parcel(
+    ParcelSize(
       parcelSize: 'Medium',
       parcelSizeDimension: 'Max. 25 kg, 19 x 38 x 64 cm',
       parcelSizeDescription: 'Fits in a shoe box',
       parcelSizeImage: 'assets/images/img_parcel_size_medium.png',
     ),
-    Parcel(
+    ParcelSize(
       parcelSize: 'Large',
       parcelSizeDimension: 'Max. 25 kg, 41 x 38 x 64 cm',
       parcelSizeDescription: 'Fits in a cardboard box',
       parcelSizeImage: 'assets/images/img_parcel_size_large.png',
     ),
-    Parcel(
+    ParcelSize(
       parcelSize: 'Custom',
       parcelSizeDimension: 'Max: 30kg or 300cm',
       parcelSizeDescription: 'Fits on a skid',

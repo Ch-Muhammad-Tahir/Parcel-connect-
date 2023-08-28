@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_project/providers/send_parcel_provide.dart';
 import 'package:fyp_project/utils/media_query.dart';
 import 'package:fyp_project/views/send_parcel_screen/sender_details.dart';
 import 'package:fyp_project/widgets/custom_button.dart';
 import 'package:fyp_project/widgets/custom_sized_box.dart';
 import 'package:fyp_project/widgets/my_custom_text.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/custom_text_field.dart';
 
 class ParcelDetailScreen extends StatelessWidget {
-  const ParcelDetailScreen({super.key});
+  final TextEditingController itemNameController = TextEditingController();
+  final TextEditingController parcelValueController = TextEditingController();
+  ParcelDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class ParcelDetailScreen extends StatelessWidget {
             height: screenWidth * 0.1,
           ),
           CustomTextField(
-            controller: TextEditingController(),
+            controller: itemNameController,
             labelText: "Item Name",
             hintText: "Enter Item Name",
           ),
@@ -40,7 +44,7 @@ class ParcelDetailScreen extends StatelessWidget {
             height: screenWidth * 0.05,
           ),
           CustomTextField(
-            controller: TextEditingController(),
+            controller: parcelValueController,
             labelText: "Parcel Value",
             hintText: r"Parcel Value ie: 500$",
           ),
@@ -48,10 +52,10 @@ class ParcelDetailScreen extends StatelessWidget {
           CustomTextButton(
               padding: const EdgeInsets.symmetric(vertical: 13),
               onTab: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SenderDetailsScreenWidget()));
+                String itemName = itemNameController.text.trim();
+                String parcelValue = parcelValueController.text.trim();
+                Provider.of<SendParcelProvider>(context, listen: false)
+                    .addParcelDetails(itemName, parcelValue, context);
               },
               buttonText: "Next",
               buttonColor: Colors.blue,

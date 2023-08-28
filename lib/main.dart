@@ -1,13 +1,11 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 import 'package:fyp_project/providers/on_boarding_provider.dart';
-import 'package:fyp_project/views/home_page/home_screen.dart';
+import 'package:fyp_project/providers/send_parcel_provide.dart';
 
-import 'package:fyp_project/views/send_parcel_screen/send_parcel_screen.dart';
-import 'package:fyp_project/views/send_parcel_screen/sender_details.dart';
 import 'package:fyp_project/views/splash_screen/splash_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'views/send_parcel_screen/check_out_parcel_screen.dart';
 
 void main(List<String> args) {
   runApp(
@@ -15,9 +13,11 @@ void main(List<String> args) {
       providers: [
         ChangeNotifierProvider<OnBoardingProvider>(
             create: (context) => OnBoardingProvider()),
+        ChangeNotifierProvider<SendParcelProvider>(
+            create: (context) => SendParcelProvider()),
       ],
-      child: MaterialApp(
-        home: HomePageScreenWidget(),
+      child: const MaterialApp(
+        home: SplashScreen(),
       ),
     ),
   );

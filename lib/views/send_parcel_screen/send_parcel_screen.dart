@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_project/providers/send_parcel_provide.dart';
 import 'package:fyp_project/utils/app_constant.dart';
 import 'package:fyp_project/utils/media_query.dart';
 import 'package:fyp_project/views/send_parcel_screen/select_parcel_category_screen.dart';
 import 'package:fyp_project/views/send_parcel_screen/send_parcel_screen_widgets/parcel_size_tile_widget.dart';
 import 'package:fyp_project/widgets/custom_sized_box.dart';
 import 'package:fyp_project/widgets/my_custom_text.dart';
+import 'package:provider/provider.dart';
 
-class SendParcelScreenWidget extends StatelessWidget {
+class SendParcelScreenWidget extends StatefulWidget {
   const SendParcelScreenWidget({super.key});
 
+  @override
+  State<SendParcelScreenWidget> createState() => _SendParcelScreenWidgetState();
+}
+
+class _SendParcelScreenWidgetState extends State<SendParcelScreenWidget> {
   @override
   Widget build(BuildContext context) {
     double screenSize = GetScreenSize.getScreenWidth(context);
@@ -33,28 +40,32 @@ class SendParcelScreenWidget extends StatelessWidget {
             CustomSizedBox(
               height: screenSize * 0.03,
             ),
-            Expanded(
-              child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: ((context, index) {
-                    return MyParcelSize(
-                      onTab: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const SelectCategoryScreenWidget()));
-                      },
-                      parcel: AppConstants.parcelSize[index],
-                    );
-                  }),
-                  separatorBuilder: (context, index) {
-                    return const CustomSizedBox(
-                      height: 10,
-                    );
-                  },
-                  itemCount: AppConstants.parcelSize.length),
-            )
+            Consumer<SendParcelProvider>(builder: (context, provider, child) {
+              return Expanded(
+                child: ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: ((context, index) {
+                      return MyParcelSize(
+                        onTab: () {
+                          provider.selectParcelSize(
+                              AppConstants.parcelSize[index].parcelSize);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SelectCategoryScreenWidget()));
+                        },
+                        parcel: AppConstants.parcelSize[index],
+                      );
+                    }),
+                    separatorBuilder: (context, index) {
+                      return const CustomSizedBox(
+                        height: 10,
+                      );
+                    },
+                    itemCount: AppConstants.parcelSize.length),
+              );
+            })
           ],
         ),
       ),

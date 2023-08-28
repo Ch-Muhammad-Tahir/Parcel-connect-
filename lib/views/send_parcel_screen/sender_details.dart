@@ -1,16 +1,23 @@
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_project/providers/send_parcel_provide.dart';
 import 'package:fyp_project/views/send_parcel_screen/receiver_details_screen.dart';
 import 'package:fyp_project/widgets/custom_sized_box.dart';
 import 'package:fyp_project/widgets/custom_text_field.dart';
 import 'package:fyp_project/widgets/my_custom_text.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../utils/media_query.dart';
 import '../../widgets/custom_button.dart';
 
 class SenderDetailsScreenWidget extends StatelessWidget {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController messageController = TextEditingController();
+  String date = "";
   String countryValue = "";
   String? stateValue = "";
   String? cityValue = "";
@@ -39,14 +46,14 @@ class SenderDetailsScreenWidget extends StatelessWidget {
             height: screenSize * 0.05,
           ),
           CustomTextField(
-              controller: TextEditingController(),
+              controller: nameController,
               labelText: "Name",
               hintText: "Enter Sender Name"),
           CustomSizedBox(
             height: screenSize * 0.05,
           ),
           CustomTextField(
-              controller: TextEditingController(),
+              controller: phoneNumberController,
               keyboardType: TextInputType.phone,
               labelText: "Mobile Number",
               hintText: "Enter Mobile Number"),
@@ -54,7 +61,7 @@ class SenderDetailsScreenWidget extends StatelessWidget {
             height: screenSize * 0.05,
           ),
           CustomTextField(
-              controller: TextEditingController(),
+              controller: addressController,
               minLine: 2,
               labelText: "Address",
               hintText: "Pick Up Address"),
@@ -161,6 +168,12 @@ class SenderDetailsScreenWidget extends StatelessWidget {
             height: screenSize * 0.05,
           ),
           SfDateRangePicker(
+            onSelectionChanged: (dateRangePickerSelectionChangedArgs) {
+              date = dateRangePickerSelectionChangedArgs.value.toString();
+
+              print(date);
+            },
+
             enablePastDates: false,
             navigationDirection: DateRangePickerNavigationDirection.horizontal,
             // showNavigationArrow: true,
@@ -182,7 +195,7 @@ class SenderDetailsScreenWidget extends StatelessWidget {
             height: screenSize * 0.05,
           ),
           CustomTextField(
-              controller: TextEditingController(),
+              controller: messageController,
               minLine: 5,
               labelText: "Message",
               hintText: "Enter Message"),
@@ -193,6 +206,14 @@ class SenderDetailsScreenWidget extends StatelessWidget {
           CustomTextButton(
               padding: const EdgeInsets.symmetric(vertical: 13),
               onTab: () {
+                String sender_city = "$cityValue, $stateValue, $countryValue";
+                String name = nameController.text.trim();
+                String phone = phoneNumberController.text.trim();
+                String address = addressController.text.trim();
+                String message = messageController.text.trim();
+                // Provider.of<SendParcelProvider>(context, listen: false)
+                //     .addSenderDetails(name, phone, address, sender_city, date,
+                //         message, context);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
